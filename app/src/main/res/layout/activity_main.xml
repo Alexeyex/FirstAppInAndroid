@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/avatar"
+        android:id="@+id/avatarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -19,12 +19,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/author"
-        app:layout_constraintStart_toEndOf="@id/avatar"
+        android:id="@+id/authorView"
+        app:layout_constraintStart_toEndOf="@id/avatarView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/published"
-        app:layout_constraintEnd_toStartOf="@id/menu"
+        app:layout_constraintBottom_toTopOf="@id/publishedView"
+        app:layout_constraintEnd_toStartOf="@id/menuView"
         app:layout_constraintVertical_chainStyle="packed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,11 +35,11 @@
         android:text="@string/author" />
 
     <TextView
-        android:id="@+id/published"
-        app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toBottomOf="@id/author"
+        android:id="@+id/publishedView"
+        app:layout_constraintStart_toEndOf="@id/avatarView"
+        app:layout_constraintTop_toBottomOf="@id/authorView"
         app:layout_constraintBottom_toBottomOf="@id/barrierTop"
-        app:layout_constraintEnd_toStartOf="@id/menu"
+        app:layout_constraintEnd_toStartOf="@id/menuView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -48,7 +48,7 @@
         android:text="@string/published" />
 
     <ImageButton
-        android:id="@+id/menu"
+        android:id="@+id/menuView"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="author, published, avatar"
+        app:constraint_referenced_ids="authorView, publishedView, avatarView"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="80dp" />
 
@@ -96,10 +96,10 @@
         android:background="@android:color/transparent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
         android:layout_marginTop="16dp"
-        app:srcCompat = "@drawable/likes"/>
+        app:srcCompat = "@drawable/image_dislike"/>
 
     <TextView
-        android:id="@+id/numberOfLikes"
+        android:id="@+id/numberOfLikesView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -117,11 +117,11 @@
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
-        app:layout_constraintStart_toEndOf="@id/numberOfLikes"
+        app:layout_constraintStart_toEndOf="@id/numberOfLikesView"
         app:srcCompat = "@drawable/shared"/>
 
     <TextView
-        android:id="@+id/numberOfShared"
+        android:id="@+id/numberOfSharedView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
