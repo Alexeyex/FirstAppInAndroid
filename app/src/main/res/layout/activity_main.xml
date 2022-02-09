@@ -143,7 +143,7 @@
         app:srcCompat = "@drawable/overlooked_post"/>
 
     <TextView
-        android:id="@+id/numberOfOverlooked"
+        android:id="@+id/numberOfOverlookedView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
