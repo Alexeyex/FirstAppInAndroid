@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             numberOfLikesView.text = numberEditing(post.numberOfLikesToInt)
             numberOfOverlookedView.text = numberEditing(post.numberOfOverlookedToInt)
 
+            binding.root.setOnClickListener {  }
+
             if (post.likedByMe) {
                 likes.setImageResource(R.drawable.image_dislike)
             }
