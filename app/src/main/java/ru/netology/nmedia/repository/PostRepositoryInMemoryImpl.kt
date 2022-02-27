@@ -2,11 +2,10 @@ package ru.netology.nmedia.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import ru.netology.nmedia.dto.NumberEditor.numberEditing
 import ru.netology.nmedia.dto.Post
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
-class PostRepositoryInMemoryImpl: PostRepository {
+class PostRepositoryInMemoryImpl : PostRepository {
 
     private var post = Post(
             id = 1,
@@ -25,28 +24,24 @@ class PostRepositoryInMemoryImpl: PostRepository {
 
     override fun like() {
         post = post.copy(likedByMe = !post.likedByMe, numberOfLikesToInt = if (post.likedByMe) {
-            post.numberOfLikesToInt++
+            post.numberOfLikesToInt - 1
         } else {
-           post.numberOfLikesToInt--
+            post.numberOfLikesToInt + 1
 
         })
         numberEditing(post.numberOfLikesToInt)
         data.value = post
     }
 
+    override fun share() {
+        post = post.copy(numberOfSharedToInt = post.numberOfSharedToInt + 1)
+        numberEditing(post.numberOfSharedToInt)
+        data.value = post
+    }
 
+    override fun overlook() {
+        post = post.copy(numberOfOverlookedToInt = post.numberOfOverlookedToInt + 1)
+        numberEditing(post.numberOfOverlookedToInt)
+        data.value = post
+    }
 }
-
-private val formatThousands = DecimalFormat("#.#").apply {
-    roundingMode = RoundingMode.DOWN
-}
-
-fun numberEditing(number: Long): String =
-        when (number) {
-            in 1000..1099 -> "${number / 1000}K"
-            in 1100..9999 -> "${formatThousands.format(number.toDouble() / 1000)}K"
-            in 10_000..999_999 -> "${(number / 1000)}K"
-            in 1_000_000..1_099_999 -> "${number / 1_000_000}M"
-            in 1_100_000..999_999_999 -> "${formatThousands.format(number.toDouble() / 1_000_000)}M"
-            else -> number.toString()
-        }

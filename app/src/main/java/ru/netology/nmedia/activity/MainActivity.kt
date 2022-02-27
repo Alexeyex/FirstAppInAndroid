@@ -1,15 +1,12 @@
 package ru.netology.nmedia.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.repository.numberEditing
+import ru.netology.nmedia.dto.NumberEditor.numberEditing
 import ru.netology.nmedia.viewmodel.PostViewModel
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +22,9 @@ class MainActivity : AppCompatActivity() {
                 authorView.text = post.author
                 contentView.text = post.content
                 publishedView.text = post.published
-                //numberOfSharedView.text = numberEditing(post.numberOfSharedToInt)
+                numberOfSharedView.text = numberEditing(post.numberOfSharedToInt)
                 numberOfLikesView.text = numberEditing(post.numberOfLikesToInt)
-                //numberOfOverlookedView.text = numberEditing(post.numberOfOverlookedToInt)
-
-
-
+                numberOfOverlookedView.text = numberEditing(post.numberOfOverlookedToInt)
 
                 likes.setImageResource(
                         if (post.likedByMe) {
@@ -42,20 +36,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-                binding.likes.setOnClickListener {
-                    viewModel.like()
+        binding.likes.setOnClickListener {
+            viewModel.like()
+        }
 
-                }
+        binding.shared.setOnClickListener {
+            viewModel.share()
+        }
 
-                /*shared.setOnClickListener {
-                    post.numberOfSharedToInt++
-                    numberOfSharedView.text = numberEditing(post.numberOfSharedToInt)
-                }
-
-                overlooked.setOnClickListener {
-                    post.numberOfOverlookedToInt++
-                    numberOfOverlookedView.text = numberEditing(post.numberOfOverlookedToInt)
-                }*/
-
+        binding.overlooked.setOnClickListener {
+            viewModel.overlook()
+        }
     }
 }
