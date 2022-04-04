@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
+import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -58,6 +61,20 @@ class MainActivity : AppCompatActivity() {
                 setText(post.content)
             }
         })
+
+        binding.postContent.doAfterTextChanged {
+            binding.undoEditing.isVisible = it?.isNotEmpty() == true
+        }
+
+        binding.undoEditing.setOnClickListener {
+            viewModel.edited.observe(this, { post ->
+                with(binding.postContent) {
+                    requestFocus()
+                    setText(post.content)
+                }
+            })
+        }
+
 
         binding.savePost.setOnClickListener {
             with(binding.postContent) {

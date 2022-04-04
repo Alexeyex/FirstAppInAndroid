@@ -2,7 +2,6 @@ package ru.netology.nmedia.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.netology.nmedia.dto.NumberEditor.numberEditing
 import ru.netology.nmedia.dto.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
@@ -44,7 +43,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
             })
         }
-        numberEditing(posts[id.toInt()-1].numberOfLikesToInt)
         data.value = posts
     }
 
@@ -52,7 +50,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
         posts = posts.map {
             it.copy(numberOfSharedToInt = it.numberOfSharedToInt + 1)
         }
-        numberEditing(posts[id.toInt()-1].numberOfSharedToInt)
         data.value = posts
     }
 
@@ -60,7 +57,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
         posts = posts.map {
             it.copy(numberOfOverlookedToInt = it.numberOfOverlookedToInt + 1)
         }
-        numberEditing(posts[id.toInt()-1].numberOfOverlookedToInt)
         data.value = posts
     }
 

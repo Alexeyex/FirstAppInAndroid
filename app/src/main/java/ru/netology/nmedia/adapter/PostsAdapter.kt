@@ -30,12 +30,6 @@ class PostsAdapter(private val onInteractionListener: OnInteractionListener) : L
         val post = getItem(position)
         holder.bind(post)
     }
-
-    var listOfPost = emptyList<Post>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 }
 
 class PostViewHolder(
