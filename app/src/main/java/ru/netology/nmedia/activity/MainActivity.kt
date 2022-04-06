@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -67,12 +66,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.undoEditing.setOnClickListener {
-            viewModel.edited.observe(this, { post ->
-                with(binding.postContent) {
-                    requestFocus()
-                    setText(post.content)
-                }
-            })
+            viewModel.clearEditing()
+            AndroidUtils.hideKeyboard(it)
+            binding.postContent.text = null
+            binding.postContent.clearFocus()
         }
 
 
