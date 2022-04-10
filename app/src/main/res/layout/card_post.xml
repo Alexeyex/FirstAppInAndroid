@@ -47,16 +47,16 @@
         android:layout_marginBottom="16dp"
         android:text="@string/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menuPostView"
-        android:layout_marginBottom="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
         android:contentDescription="@string/post_menu"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/menu" />
+        app:icon="@drawable/menu"
+        app:iconTint="@color/ic_menu_tint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrierTop"
@@ -89,68 +89,44 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="279dp" />
 
-    <ImageButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/likes"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:checkable="true"
+        android:textColor="@color/purple_500"
+        android:textColorHighlight="?android:attr/textColorHighlightInverse"
+        app:icon="@drawable/ic_like_selector"
+        app:iconTint="@color/ic_like_tint"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        android:layout_marginTop="16dp"
-        app:srcCompat = "@drawable/image_dislike"/>
+        tools:text="100" />
 
-    <TextView
-        android:id="@+id/numberOfLikesView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="1dp"
-        android:text="@string/numberOfLikes"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/likes"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
-
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/shared"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:textColorHighlight="?android:attr/textColorHighlightInverse"
+        app:icon="@drawable/shared"
+        app:iconTint="@color/ic_shared_tint"
+        app:layout_constraintStart_toEndOf="@id/likes"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintStart_toEndOf="@id/numberOfLikesView"
-        app:srcCompat = "@drawable/shared"/>
+        tools:text="100" />
 
-    <TextView
-        android:id="@+id/numberOfSharedView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/numberOfShared"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/shared"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
-
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/overlooked"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        app:icon="@drawable/overlooked_post"
+        app:iconTint="@color/colorOverlooked"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat = "@drawable/overlooked_post"/>
+        android:textColorHighlight="?android:attr/textColorHighlightInverse"
 
-    <TextView
-        android:id="@+id/numberOfOverlookedView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:text="@string/numberOfOverlooked"
-        android:textColor="@color/black"
-        android:layout_marginStart="1dp"
-        app:layout_constraintStart_toEndOf="@id/overlooked"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
+        tools:text="1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
