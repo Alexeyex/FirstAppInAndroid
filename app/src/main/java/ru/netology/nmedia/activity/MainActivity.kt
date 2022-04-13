@@ -1,32 +1,50 @@
 package ru.netology.nmedia.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.AndroidUtils
+import ru.netology.nmedia.utils.AndroidUtils.showToast
 import ru.netology.nmedia.viewmodel.PostViewModel
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
+    private val newPostRequestCode = 1
+    private val newPostRequestCodew = 2
+    private val viewModel: PostViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
-        val viewModel: PostViewModel by viewModels()
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
             }
 
             override fun onShare(post: Post) {
-                viewModel.shareById(post.id)
+                val intent = Intent(Intent.ACTION_SEND)
+                    .setType("text/plain")
+                    .putExtra(Intent.EXTRA_TEXT, post.content)
+                    .let {
+                        Intent.createChooser(it, null)
+                    }
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                } else {
+                    showToast(R.string.app_not_found_error)
+                }
             }
 
             override fun onOverlook(post: Post) {
@@ -34,7 +52,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEdit(post: Post) {
-                viewModel.edit(post)
+                //viewModel.edit(post)
+                viewModel.changeContent(post.content)
+                val intent = Intent(this@MainActivity, NewPostActivity::class.java)
+                intent.putExtra(Intent.EXTRA_TEXT, post.content)
+
+                startActivityForResult(intent, newPostRequestCodew)
+
             }
 
 
@@ -50,47 +74,26 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
-        viewModel.edited.observe(this, { post ->
-            if (post.id == 0L) {
-                return@observe
-            }
 
-            with(binding.postContent) {
-                requestFocus()
-                setText(post.content)
-            }
-        })
-
-        binding.postContent.doAfterTextChanged {
-            binding.undoEditing.isVisible = it?.isNotEmpty() == true
+        binding.addPost.setOnClickListener {
+            val intent = Intent(this, NewPostActivity::class.java)
+            startActivityForResult(intent, newPostRequestCode)
         }
+    }
 
-        binding.undoEditing.setOnClickListener {
-            viewModel.clearEditing()
-            AndroidUtils.hideKeyboard(it)
-            binding.postContent.text = null
-            binding.postContent.clearFocus()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == newPostRequestCode && resultCode == RESULT_OK && data != null) {
+            val post = data.getParcelableExtra<Post>(NewPostActivity.POST_KEY_CREATE) ?: return
+
+            viewModel.edit(post)
+            viewModel.save()
+        } else if (requestCode == newPostRequestCodew && resultCode == RESULT_OK && data != null) {
+            val post = data.getParcelableExtra<Post>(NewPostActivity.POST_KEY_EDIT) ?: return
+
+            viewModel.changeContent(post.content)
+            viewModel.save()
         }
-
-
-        binding.savePost.setOnClickListener {
-            with(binding.postContent) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Поле контента не может быть пустым",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                }
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-        }
-
     }
 }
