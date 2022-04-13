@@ -52,13 +52,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEdit(post: Post) {
-                //viewModel.edit(post)
+                viewModel.edit(post)
                 //viewModel.changeContent(post.content)
                 val intent = Intent(this@MainActivity, NewPostActivity::class.java)
                 intent.putExtra(Intent.EXTRA_TEXT, post)
-
                 startActivityForResult(intent, newPostRequestCode2)
-
             }
 
 

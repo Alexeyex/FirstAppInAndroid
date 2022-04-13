@@ -47,7 +47,7 @@ class NewPostActivity : AppCompatActivity() {
             var txt = binding.editPost.text?.toString()
             var text = intent.getStringExtra(Intent.EXTRA_TEXT)
             txt = text.toString()
-            
+
 
             /*if (intent.hasExtra(Intent.EXTRA_TEXT)) {
                             val txt = intent.getStringExtra(Intent.EXTRA_TEXT)
