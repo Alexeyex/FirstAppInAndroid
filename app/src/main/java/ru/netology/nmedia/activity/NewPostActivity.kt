@@ -25,32 +25,37 @@ class NewPostActivity : AppCompatActivity() {
                 setResult(RESULT_CANCELED)
             } else {
                 val intent = Intent()
-                    .putExtra(
-                        POST_KEY_CREATE, Post(
-                            id = 0L,
-                            author = "",
-                            content = text,
-                            published = "",
-                            likedByMe = false,
-                            numberOfOverlookedToInt = 1L,
-                            numberOfSharedToInt = 0L,
-                            numberOfLikesToInt = 0L
+                        .putExtra(
+                                POST_KEY_CREATE, Post(
+                                id = 0L,
+                                author = "",
+                                content = text,
+                                published = "",
+                                likedByMe = false,
+                                numberOfOverlookedToInt = 1L,
+                                numberOfSharedToInt = 0L,
+                                numberOfLikesToInt = 0L
                         )
-                    )
+                        )
                 setResult(RESULT_OK, intent)
             }
             finish()
         }
 
         binding.savePost.setOnClickListener {
-                val intent = Intent().getStringExtra(Intent.EXTRA_TEXT)
-                        /*if (intent.hasExtra(Intent.EXTRA_TEXT)) {
+            val intent = getIntent()
+            var txt = binding.editPost.text?.toString()
+            var text = intent.getStringExtra(Intent.EXTRA_TEXT)
+            txt = text.toString()
+            
+
+            /*if (intent.hasExtra(Intent.EXTRA_TEXT)) {
                             val txt = intent.getStringExtra(Intent.EXTRA_TEXT)
                             var text = binding.editPost.text.toString()
                             text = txt.toString()
 
                         }*/
-                    /*.putExtra(POST_KEY_EDIT, text)
+            /*.putExtra(POST_KEY_EDIT, text)
                 setResult(RESULT_OK, intent)
             finish()*/
         }

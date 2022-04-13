@@ -18,8 +18,8 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    private val newPostRequestCode = 1
-    private val newPostRequestCodew = 2
+    private val newPostRequestCode1 = 1
+    private val newPostRequestCode2 = 2
     private val viewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,11 +53,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun onEdit(post: Post) {
                 //viewModel.edit(post)
-                viewModel.changeContent(post.content)
+                //viewModel.changeContent(post.content)
                 val intent = Intent(this@MainActivity, NewPostActivity::class.java)
-                intent.putExtra(Intent.EXTRA_TEXT, post.content)
+                intent.putExtra(Intent.EXTRA_TEXT, post)
 
-                startActivityForResult(intent, newPostRequestCodew)
+                startActivityForResult(intent, newPostRequestCode2)
 
             }
 
@@ -77,19 +77,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.addPost.setOnClickListener {
             val intent = Intent(this, NewPostActivity::class.java)
-            startActivityForResult(intent, newPostRequestCode)
+            startActivityForResult(intent, newPostRequestCode1)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == newPostRequestCode && resultCode == RESULT_OK && data != null) {
+        if (requestCode == newPostRequestCode1 && resultCode == RESULT_OK && data != null) {
             val post = data.getParcelableExtra<Post>(NewPostActivity.POST_KEY_CREATE) ?: return
 
             viewModel.edit(post)
             viewModel.save()
-        } else if (requestCode == newPostRequestCodew && resultCode == RESULT_OK && data != null) {
+        } else if (requestCode == newPostRequestCode2 && resultCode == RESULT_OK && data != null) {
             val post = data.getParcelableExtra<Post>(NewPostActivity.POST_KEY_EDIT) ?: return
 
             viewModel.changeContent(post.content)
