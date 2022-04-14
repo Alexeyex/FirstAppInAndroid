@@ -10,21 +10,16 @@ import ru.netology.nmedia.dto.Post
 
 class NewPostActivity : AppCompatActivity() {
 
-    companion object {
-        const val POST_KEY_CREATE = "postCreate"
-        const val POST_KEY_EDIT = "postEdit"
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityNewPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        intent?.getStringExtra(Intent.EXTRA_TEXT)
+                ?.let(binding.editPost::setText)
+
         binding.editPost.requestFocus()
-
-
-
+        
         binding.savePost.setOnClickListener {
             //if (intent.hasExtra(Intent.EXTRA_TEXT)) {
             val intent = Intent()
