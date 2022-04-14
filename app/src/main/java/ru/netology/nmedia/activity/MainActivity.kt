@@ -19,8 +19,7 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    private val newPostRequestCode1 = 1
-    private val newPostRequestCode2 = 2
+
     private val viewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val editPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
+        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
             result ?: return@registerForActivityResult
             viewModel.changeContent(result)
             viewModel.save()
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
-                editPostLauncher.launch()
+                editPostLauncher.launch(post.content)
             }
 
 
@@ -79,10 +78,15 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
+        val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.changeContent(result)
+            viewModel.save()
+        }
+
 
         binding.addPost.setOnClickListener {
-            val intent = Intent(this, NewPostActivity::class.java)
-            startActivityForResult(intent, newPostRequestCode1)
+            newPostLauncher.launch()
         }
     }
 

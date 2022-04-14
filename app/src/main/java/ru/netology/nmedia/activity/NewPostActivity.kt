@@ -26,7 +26,7 @@ class NewPostActivity : AppCompatActivity() {
 
 
         binding.savePost.setOnClickListener {
-            if (intent.hasExtra(Intent.EXTRA_TEXT)) {
+            //if (intent.hasExtra(Intent.EXTRA_TEXT)) {
             val intent = Intent()
             if (binding.editPost.text.isNullOrBlank()) {
                 setResult(Activity.RESULT_CANCELED, intent)
@@ -36,7 +36,7 @@ class NewPostActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intent)
             }
             finish()
-        }  else {
+        }  /*else {
             val text = binding.editPost.text?.toString()
             if (text.isNullOrBlank()) {
                 setResult(RESULT_CANCELED)
@@ -57,8 +57,8 @@ class NewPostActivity : AppCompatActivity() {
                 setResult(RESULT_OK, intent)
             }
             finish()
-        }}
+        }*/}
 
 
     }
-}
+
