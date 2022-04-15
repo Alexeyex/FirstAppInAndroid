@@ -1,6 +1,7 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.launch
@@ -54,6 +55,13 @@ class MainActivity : AppCompatActivity() {
 
             override fun onOverlook(post: Post) {
                 viewModel.overlookById(post.id)
+            }
+
+            override fun onAddVideo(post: Post) {
+                viewModel.addVideoById(post.id)
+                val intent = Intent(this@MainActivity, VideoActivity::class.java)
+                    /*.putExtra(Intent.EXTRA_TEXT, )*/
+                startActivity(intent)
             }
 
             override fun onEdit(post: Post) {

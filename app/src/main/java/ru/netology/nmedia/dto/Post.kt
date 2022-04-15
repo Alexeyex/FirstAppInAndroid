@@ -11,7 +11,7 @@ data class Post(
         val content: String,
         val published: String,
         val likedByMe: Boolean,
-        val video: String,
+        var video: String?,
         val numberOfLikesToInt: Long,
         val numberOfSharedToInt: Long,
         val numberOfOverlookedToInt: Long

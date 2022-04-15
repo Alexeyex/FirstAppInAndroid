@@ -3,6 +3,7 @@ package ru.netology.nmedia.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ interface OnInteractionListener {
     fun onOverlook(post: Post)
     fun onEdit(post: Post)
     fun onRemove(post: Post)
+    fun onAddVideo (post: Post)
 }
 
 class PostsAdapter(private val onInteractionListener: OnInteractionListener) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
@@ -36,6 +38,7 @@ class PostViewHolder(
         private val binding: CardPostBinding,
         private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(post: Post) {
         binding.apply {
             authorView.text = post.author
@@ -47,8 +50,13 @@ class PostViewHolder(
 
             likes.isChecked = post.likedByMe
 
+
+
             likes.setOnClickListener {
                 onInteractionListener.onLike(post)
+            }
+            addVideo.setOnClickListener {
+                onInteractionListener.onAddVideo(post)
             }
             shared.setOnClickListener {
                 onInteractionListener.onShare(post)

@@ -1,5 +1,6 @@
 package ru.netology.nmedia.repository
 
+import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
@@ -84,6 +85,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
     override fun removeById(id: Long) {
         posts = posts.filter {it.id != id}
         data.value = posts
+    }
+
+    override fun addVideoById(id: Long) {
+
     }
 
     override fun save(post: Post) {

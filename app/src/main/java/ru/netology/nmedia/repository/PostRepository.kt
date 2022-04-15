@@ -10,5 +10,6 @@ interface PostRepository {
     fun overlookById(id: Long)
     fun removeById(id: Long)
     fun save(post: Post)
+    fun addVideoById (id: Long)
 
 }
