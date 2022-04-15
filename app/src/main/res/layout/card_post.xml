@@ -92,12 +92,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/likes"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/OurButtons"
         android:checkable="true"
         android:textColor="@color/purple_500"
-        android:textColorHighlight="?android:attr/textColorHighlightInverse"
         app:icon="@drawable/ic_like_selector"
         app:iconTint="@color/ic_like_tint"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +103,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/shared"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColorHighlight="?android:attr/textColorHighlightInverse"
+        style="@style/OurButtons"
         app:icon="@drawable/shared"
         app:iconTint="@color/ic_shared_tint"
         app:layout_constraintStart_toEndOf="@id/likes"
@@ -118,15 +112,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/overlooked"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/OurButtons"
         app:icon="@drawable/overlooked_post"
         app:iconTint="@color/colorOverlooked"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColorHighlight="?android:attr/textColorHighlightInverse"
-
-        tools:text="1"/>
+        tools:text="100"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

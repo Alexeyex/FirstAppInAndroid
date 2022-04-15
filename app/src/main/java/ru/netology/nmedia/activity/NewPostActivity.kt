@@ -21,7 +21,6 @@ class NewPostActivity : AppCompatActivity() {
         binding.editPost.requestFocus()
         
         binding.savePost.setOnClickListener {
-            //if (intent.hasExtra(Intent.EXTRA_TEXT)) {
             val intent = Intent()
             if (binding.editPost.text.isNullOrBlank()) {
                 setResult(Activity.RESULT_CANCELED, intent)
@@ -31,28 +30,7 @@ class NewPostActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intent)
             }
             finish()
-        }  /*else {
-            val text = binding.editPost.text?.toString()
-            if (text.isNullOrBlank()) {
-                setResult(RESULT_CANCELED)
-            } else {
-                val intent = Intent()
-                        .putExtra(
-                                POST_KEY_CREATE, Post(
-                                id = 0L,
-                                author = "",
-                                content = text,
-                                published = "",
-                                likedByMe = false,
-                                numberOfOverlookedToInt = 1L,
-                                numberOfSharedToInt = 0L,
-                                numberOfLikesToInt = 0L
-                        )
-                        )
-                setResult(RESULT_OK, intent)
-            }
-            finish()
-        }*/}
+        } }
 
 
     }

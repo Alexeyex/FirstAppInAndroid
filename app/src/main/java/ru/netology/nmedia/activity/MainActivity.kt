@@ -33,10 +33,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.save()
         }
 
-        /*binding.addPost.setOnClickListener {
-            editPostLauncher.launch()
-        }*/
-
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)

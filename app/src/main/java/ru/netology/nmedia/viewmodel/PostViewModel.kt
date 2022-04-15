@@ -13,6 +13,7 @@ private val empty = Post(
     content = "",
     published = "",
     likedByMe = false,
+    video = "",
     numberOfLikesToInt = 0,
     numberOfSharedToInt = 0,
     numberOfOverlookedToInt = 0
