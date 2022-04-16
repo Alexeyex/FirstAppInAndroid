@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             override fun onAddVideo(post: Post) {
                 viewModel.addVideoById(post.id)
                 val intent = Intent(this@MainActivity, VideoActivity::class.java)
-                    /*.putExtra(Intent.EXTRA_TEXT, )*/
                 startActivity(intent)
             }
 

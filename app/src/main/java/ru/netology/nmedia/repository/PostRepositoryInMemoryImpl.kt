@@ -26,7 +26,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
                     content = "С нами вы можете получить новую профессию, освоить навыки для развития карьеры или перенастроить свой бизнес. Выбирайте подходящую из более 80 программ.",
                     published = "1 июня в 20:17",
                     likedByMe = false,
-                    video = "",
+                    video = "https://www.youtube.com/watch?v=WhWc3b3KhnY",
                     numberOfSharedToInt = 19999,
                     numberOfLikesToInt = 199,
                     numberOfOverlookedToInt = 23212
@@ -88,7 +88,13 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun addVideoById(id: Long) {
-
+        posts = posts.map {
+            if (id == it.id) {
+                it.copy(video = it.video)
+            } else
+                it
+        }
+        data.value = posts
     }
 
     override fun save(post: Post) {
@@ -98,6 +104,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
                 author = "Я",
                 published = "Сейчас",
                 likedByMe = false,
+                video = "",
                 numberOfLikesToInt = 0L,
                 numberOfSharedToInt = 0L,
                 numberOfOverlookedToInt = 1L)

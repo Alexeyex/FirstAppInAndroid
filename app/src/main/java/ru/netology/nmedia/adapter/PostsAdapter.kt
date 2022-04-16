@@ -50,7 +50,7 @@ class PostViewHolder(
 
             likes.isChecked = post.likedByMe
 
-
+            addVideo.isVisible = post.video?.isNotBlank() == true
 
             likes.setOnClickListener {
                 onInteractionListener.onLike(post)
