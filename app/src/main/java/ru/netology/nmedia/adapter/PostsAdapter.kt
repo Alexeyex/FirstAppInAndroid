@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
-import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.NumberEditor
 import ru.netology.nmedia.dto.Post
@@ -19,7 +18,7 @@ interface OnInteractionListener {
     fun onOverlook(post: Post)
     fun onEdit(post: Post)
     fun onRemove(post: Post)
-    fun onAddVideo (post: Post)
+    fun onAddVideo(post: Post)
 }
 
 class PostsAdapter(private val onInteractionListener: OnInteractionListener) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {

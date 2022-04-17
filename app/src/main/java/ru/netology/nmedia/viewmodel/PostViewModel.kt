@@ -2,21 +2,20 @@ package ru.netology.nmedia.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.netology.nmedia.R
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
 
 private val empty = Post(
-    id = 0,
-    author = "",
-    content = "",
-    published = "",
-    likedByMe = false,
-    video = "",
-    numberOfLikesToInt = 0,
-    numberOfSharedToInt = 0,
-    numberOfOverlookedToInt = 0
+        id = 0,
+        author = "",
+        content = "",
+        published = "",
+        likedByMe = false,
+        video = "",
+        numberOfLikesToInt = 0,
+        numberOfSharedToInt = 0,
+        numberOfOverlookedToInt = 0
 )
 
 class PostViewModel : ViewModel() {

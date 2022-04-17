@@ -1,20 +1,15 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.utils.AndroidUtils
 import ru.netology.nmedia.utils.AndroidUtils.showToast
 import ru.netology.nmedia.viewmodel.PostViewModel
 
@@ -34,10 +29,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.save()
         }
 
-        val addVideoLauncher = registerForActivityResult(AddVideoContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.addVideoById()
-        }
 
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
@@ -46,11 +37,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun onShare(post: Post) {
                 val intent = Intent(Intent.ACTION_SEND)
-                    .setType("text/plain")
-                    .putExtra(Intent.EXTRA_TEXT, post.content)
-                    .let {
-                        Intent.createChooser(it, null)
-                    }
+                        .setType("text/plain")
+                        .putExtra(Intent.EXTRA_TEXT, post.content)
+                        .let {
+                            Intent.createChooser(it, null)
+                        }
                 if (intent.resolveActivity(packageManager) != null) {
                     startActivity(intent)
                 } else {
@@ -65,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             override fun onAddVideo(post: Post) {
                 viewModel.addVideoById(post.id)
                 val intent = Intent(this@MainActivity, VideoActivity::class.java)
+                        .putExtra(Intent.EXTRA_TEXT, post.video)
                 startActivity(intent)
             }
 
@@ -77,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             override fun onRemove(post: Post) {
                 viewModel.removeById(post.id)
             }
-
         })
 
         binding.listPostFeed.adapter = adapter

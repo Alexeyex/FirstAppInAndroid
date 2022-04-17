@@ -13,9 +13,9 @@ object AndroidUtils {
 
     fun Context.showToast(text: Int, length: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(
-            this,
-            getString(text),
-            length
+                this,
+                getString(text),
+                length
         ).show()
     }
 }

@@ -2,8 +2,8 @@ package ru.netology.nmedia.activity
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityNewPostBinding
 
 class NewPostActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class NewPostActivity : AppCompatActivity() {
                 ?.let(binding.editPost::setText)
 
         binding.editPost.requestFocus()
-        
+
         binding.savePost.setOnClickListener {
             val intent = Intent()
             if (binding.editPost.text.isNullOrBlank()) {
@@ -28,8 +28,7 @@ class NewPostActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intent)
             }
             finish()
-        } }
-
-
+        }
     }
+}
 

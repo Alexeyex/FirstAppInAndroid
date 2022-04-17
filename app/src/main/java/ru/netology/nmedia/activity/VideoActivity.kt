@@ -2,8 +2,8 @@ package ru.netology.nmedia.activity
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityVideoBinding
 
 class VideoActivity : AppCompatActivity() {
@@ -14,9 +14,9 @@ class VideoActivity : AppCompatActivity() {
 
 
         binding.playVideoBtn.setOnClickListener {
-
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse())
-            startActivity(intent)
+            startActivity(
+                    Intent(Intent.ACTION_VIEW, Uri.parse(intent.getStringExtra(Intent.EXTRA_TEXT)))
+            )
         }
     }
 }

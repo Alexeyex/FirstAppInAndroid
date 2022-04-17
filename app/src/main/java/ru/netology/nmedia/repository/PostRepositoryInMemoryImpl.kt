@@ -1,6 +1,5 @@
 package ru.netology.nmedia.repository
 
-import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
@@ -83,7 +82,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun removeById(id: Long) {
-        posts = posts.filter {it.id != id}
+        posts = posts.filter { it.id != id }
         data.value = posts
     }
 
@@ -100,14 +99,14 @@ class PostRepositoryInMemoryImpl : PostRepository {
     override fun save(post: Post) {
         if (post.id == 0L) {
             posts = listOf(
-                post.copy(id = nextId++,
-                author = "Я",
-                published = "Сейчас",
-                likedByMe = false,
-                video = "",
-                numberOfLikesToInt = 0L,
-                numberOfSharedToInt = 0L,
-                numberOfOverlookedToInt = 1L)
+                    post.copy(id = nextId++,
+                            author = "Я",
+                            published = "Сейчас",
+                            likedByMe = false,
+                            video = "",
+                            numberOfLikesToInt = 0L,
+                            numberOfSharedToInt = 0L,
+                            numberOfOverlookedToInt = 1L)
             ) + posts
             data.value = posts
             return
