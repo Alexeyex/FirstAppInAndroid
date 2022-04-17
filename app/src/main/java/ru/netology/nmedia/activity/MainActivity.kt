@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
             viewModel.save()
         }
 
+        val addVideoLauncher = registerForActivityResult(AddVideoContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.addVideoById()
+        }
+
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)

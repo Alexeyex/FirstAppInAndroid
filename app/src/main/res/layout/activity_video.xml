@@ -7,19 +7,6 @@
     android:scrollbarSize="16dp"
     tools:context=".activity.VideoActivity">
 
-    <EditText
-        android:id="@+id/url"
-        android:layout_width="wrap_content"
-        android:layout_height="85dp"
-        android:background="@color/white"
-        android:elevation="2dp"
-        android:hint="Введите ссылку видео"
-        android:textColorHint="#4CAF50"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playVideoBtn" />
 
     <ImageButton
         android:id="@+id/videoImage"

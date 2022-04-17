@@ -12,9 +12,10 @@ class VideoActivity : AppCompatActivity() {
         val binding = ActivityVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         binding.playVideoBtn.setOnClickListener {
-            val urlText = binding.url.text.toString()
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlText))
+
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse())
             startActivity(intent)
         }
     }
