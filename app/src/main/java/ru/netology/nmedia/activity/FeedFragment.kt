@@ -2,26 +2,25 @@ package ru.netology.nmedia.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.launch
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.utils.AndroidUtils.showToast
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class FeedFragment : Fragment() {
 
-    private val viewModel: PostViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
         val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
             result ?: return@registerForActivityResult
@@ -36,17 +35,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onShare(post: Post) {
-                val intent = Intent(Intent.ACTION_SEND)
-                        .setType("text/plain")
-                        .putExtra(Intent.EXTRA_TEXT, post.content)
-                        .let {
-                            Intent.createChooser(it, null)
-                        }
-                if (intent.resolveActivity(packageManager) != null) {
-                    startActivity(intent)
-                } else {
-                    showToast(R.string.app_not_found_error)
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, post.content)
+                    type = "text/plain"
                 }
+
+                val shareIntent = Intent.createChooser(intent, getString(R.string.chooser_share_post))
+                startActivity(shareIntent)
             }
 
             override fun onOverlook(post: Post) {
@@ -55,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onAddVideo(post: Post) {
                 viewModel.addVideoById(post.id)
-                val intent = Intent(this@MainActivity, VideoActivity::class.java)
+                val intent = Intent(requireContext(), VideoFragment::class.java)
                         .putExtra(Intent.EXTRA_TEXT, post.video)
                 startActivity(intent)
             }
@@ -73,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.listPostFeed.adapter = adapter
 
-        viewModel.data.observe(this) { posts ->
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
 
@@ -87,6 +83,10 @@ class MainActivity : AppCompatActivity() {
         binding.addPost.setOnClickListener {
             newPostLauncher.launch()
         }
-    }
 
+        return binding.root
+    }
 }
+
+
+
