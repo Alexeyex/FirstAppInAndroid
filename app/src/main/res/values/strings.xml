@@ -12,6 +12,6 @@
     <string name="edit_post" translatable="false">Редактировать</string>
     <string name="remove_post" translatable="false">Удалить</string>
     <string name="chooser_share_post" translatable="false">Поделиться постом</string>
-    <string name="post_text" translatable="false">Опубликовать пост</string>
+    <string name="publish_text" translatable="false">Опубликовать пост</string>
     <string name="app_not_found_error" translatable="false">App not found</string>
 </resources>

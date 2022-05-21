@@ -3,17 +3,18 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "ru.netology.nmedia"
-        minSdk 23
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId = "ru.netology.nmedia"
+        minSdk = 23
+        targetSdk = 32
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,10 +23,11 @@ android {
         viewBinding true
     }
 
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled = false
+            proguardFiles += file('proguard-rules.txt')
         }
     }
     compileOptions {
@@ -35,7 +37,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'ru.netology.nmedia'
 }
+
 
 dependencies {
     def core_version = "1.7.0"
@@ -52,16 +56,19 @@ dependencies {
     def nav_version = "2.4.2"
 
     implementation "androidx.core:core-ktx:$core_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$mdc_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"

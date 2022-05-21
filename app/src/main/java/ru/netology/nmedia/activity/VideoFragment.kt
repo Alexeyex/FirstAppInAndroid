@@ -3,20 +3,22 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import ru.netology.nmedia.databinding.ActivityVideoBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import ru.netology.nmedia.databinding.FragmentVideoBinding
 
-class VideoFragment : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityVideoBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+class VideoFragment : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val binding = FragmentVideoBinding.inflate(inflater, container, false)
 
         binding.playVideoBtn.setOnClickListener {
+            val intent = Intent()
             startActivity(
-                    Intent(Intent.ACTION_VIEW, Uri.parse(intent.getStringExtra(Intent.EXTRA_TEXT)))
+                Intent(Intent.ACTION_VIEW, Uri.parse(intent.getStringExtra(Intent.EXTRA_TEXT)))
             )
         }
+        return binding.root
     }
-}
+    }
