@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.launch
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,7 +19,11 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 class FeedFragment : Fragment() {
 
     private val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
         val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
@@ -42,7 +45,8 @@ class FeedFragment : Fragment() {
                     type = "text/plain"
                 }
 
-                val shareIntent = Intent.createChooser(intent, getString(R.string.chooser_share_post))
+                val shareIntent =
+                    Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
             }
 
@@ -53,7 +57,7 @@ class FeedFragment : Fragment() {
             override fun onAddVideo(post: Post) {
                 viewModel.addVideoById(post.id)
                 val intent = Intent(requireContext(), VideoFragment::class.java)
-                        .putExtra(Intent.EXTRA_TEXT, post.video)
+                    .putExtra(Intent.EXTRA_TEXT, post.video)
                 startActivity(intent)
             }
 
@@ -74,17 +78,9 @@ class FeedFragment : Fragment() {
             adapter.submitList(posts)
         }
 
-        /*val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
-        }*/
-
-
         binding.addPost.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
-
         return binding.root
     }
 }
