@@ -17,7 +17,6 @@ import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.LongDelegate
 import ru.netology.nmedia.viewmodel.PostViewModel
 import ru.netology.nmedia.activity.NewPostFragment.Companion.postArgument
-import ru.netology.nmedia.activity.NewPostFragment.Companion.idArgument
 
 
 
@@ -52,6 +51,8 @@ class DetailsFragment : Fragment() {
                 likes.text = NumberEditor.numberEditing(post.numberOfLikesToInt)
                 shared.text = NumberEditor.numberEditing(post.numberOfSharedToInt)
                 overlooked.text = NumberEditor.numberEditing(post.numberOfOverlookedToInt)
+
+                likes.isChecked = post.likedByMe
 
                 likes.setOnClickListener {
                     viewModel.likeById(post.id)

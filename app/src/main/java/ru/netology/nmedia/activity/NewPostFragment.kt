@@ -18,7 +18,6 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 class NewPostFragment : Fragment() {
     companion object {
         var Bundle.postArgument: Post? by ParcelableDelegate()
-        var Bundle.idArgument: Long? by LongDelegate
         var Bundle.textArg: String? by StringArg
     }
 
@@ -31,8 +30,8 @@ class NewPostFragment : Fragment() {
 
         val binding = FragmentNewPostBinding.inflate(inflater, container, false)
 
-        val post: Post = requireNotNull(arguments?.postArgument)
-        binding.editPost.setText(post.content)
+        val post = arguments?.postArgument
+        binding.editPost.setText(post?.content)
         binding.editPost.requestFocus()
 
         binding.savePost.setOnClickListener {

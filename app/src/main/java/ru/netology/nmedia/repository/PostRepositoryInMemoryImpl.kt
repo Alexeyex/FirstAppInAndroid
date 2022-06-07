@@ -19,7 +19,6 @@ class PostRepositoryInMemoryImpl(context: Context) : PostRepository {
     private val type = TypeToken.getParameterized(List::class.java, Post::class.java).type
     private val gson = Gson()
 
-    private var nextId = 1L
     private var posts : List<Post> = preferences.getString(POST_KEY, null)?.let {
         gson.fromJson(it, type)
     } ?: emptyList()
@@ -85,7 +84,7 @@ class PostRepositoryInMemoryImpl(context: Context) : PostRepository {
     override fun save(post: Post) {
         if (post.id == 0L) {
             posts = listOf(
-                    post.copy(id = nextId++,
+                    post.copy(id = posts.firstOrNull()?.id?.plus(1) ?: 0,
                             author = "Я",
                             published = "Сейчас",
                             likedByMe = false,

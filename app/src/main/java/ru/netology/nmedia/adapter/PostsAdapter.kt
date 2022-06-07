@@ -19,6 +19,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post)
     fun onRemove(post: Post)
     fun onAddVideo(post: Post)
+    fun onClickPost(post: Post)
 }
 
 class PostsAdapter(private val onInteractionListener: OnInteractionListener) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
@@ -62,6 +63,10 @@ class PostViewHolder(
             }
             overlooked.setOnClickListener {
                 onInteractionListener.onOverlook(post)
+            }
+
+            root.setOnClickListener {
+                onInteractionListener.onClickPost(post)
             }
 
 
