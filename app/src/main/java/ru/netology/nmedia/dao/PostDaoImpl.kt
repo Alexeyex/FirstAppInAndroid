@@ -10,11 +10,11 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
         val DDL = """
         CREATE TABLE ${PostColumns.TABLE} (
             ${PostColumns.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-            ${PostColumns.COLUMN_AUTHOR} TEXT NOT NULL,
-            ${PostColumns.COLUMN_CONTENT} TEXT NOT NULL,
-            ${PostColumns.COLUMN_PUBLISHED} TEXT NOT NULL,
+            ${PostColumns.COLUMN_AUTHOR} TEXT,
+            ${PostColumns.COLUMN_CONTENT} TEXT,
+            ${PostColumns.COLUMN_PUBLISHED} TEXT,
             ${PostColumns.COLUMN_LIKED_BY_ME} BOOLEAN NOT NULL DEFAULT 0,
-            ${PostColumns.COLUMN_VIDEO} TEXT NOT NULL,
+            ${PostColumns.COLUMN_VIDEO} TEXT,
             ${PostColumns.COLUMN_LIKES} INTEGER NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_SHARES} INTEGER NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_LOOKS} INTEGER NOT NULL DEFAULT 0
