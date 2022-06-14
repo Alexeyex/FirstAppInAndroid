@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.AndroidUtils
-import ru.netology.nmedia.utils.LongDelegate
 import ru.netology.nmedia.utils.ParcelableDelegate
 import ru.netology.nmedia.utils.StringArg
 import ru.netology.nmedia.viewmodel.PostViewModel

@@ -10,7 +10,11 @@ import androidx.fragment.app.Fragment
 import ru.netology.nmedia.databinding.FragmentVideoBinding
 
 class VideoFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentVideoBinding.inflate(inflater, container, false)
 
         binding.playVideoBtn.setOnClickListener {
@@ -21,4 +25,4 @@ class VideoFragment : Fragment() {
         }
         return binding.root
     }
-    }
+}

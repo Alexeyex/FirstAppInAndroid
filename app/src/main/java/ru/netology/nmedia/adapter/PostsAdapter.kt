@@ -22,7 +22,8 @@ interface OnInteractionListener {
     fun onClickPost(post: Post)
 }
 
-class PostsAdapter(private val onInteractionListener: OnInteractionListener) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+class PostsAdapter(private val onInteractionListener: OnInteractionListener) :
+    ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding, onInteractionListener)
@@ -35,8 +36,8 @@ class PostsAdapter(private val onInteractionListener: OnInteractionListener) : L
 }
 
 class PostViewHolder(
-        private val binding: CardPostBinding,
-        private val onInteractionListener: OnInteractionListener
+    private val binding: CardPostBinding,
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {

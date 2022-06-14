@@ -11,13 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.map
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.NewPostFragment.Companion.postArgument
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.NumberEditor
-import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.LongDelegate
 import ru.netology.nmedia.viewmodel.PostViewModel
-import ru.netology.nmedia.activity.NewPostFragment.Companion.postArgument
-
 
 
 class DetailsFragment : Fragment() {
