@@ -1,4 +1,4 @@
-package ru.netology.nmedia.activity
+package ru.netology.nmedia.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.map
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.NewPostFragment.Companion.postArgument
+import ru.netology.nmedia.view.activity.NewPostFragment.Companion.postArgument
 import ru.netology.nmedia.databinding.CardPostBinding
-import ru.netology.nmedia.dto.NumberEditor
+import ru.netology.nmedia.model.dto.NumberEditor
 import ru.netology.nmedia.utils.LongDelegate
 import ru.netology.nmedia.viewmodel.PostViewModel
 

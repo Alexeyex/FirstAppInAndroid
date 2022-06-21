@@ -1,4 +1,4 @@
-package ru.netology.nmedia.activity
+package ru.netology.nmedia.view.activity
 
 import android.content.Intent
 import android.net.Uri

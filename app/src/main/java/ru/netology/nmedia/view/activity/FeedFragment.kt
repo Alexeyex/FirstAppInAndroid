@@ -1,4 +1,4 @@
-package ru.netology.nmedia.activity
+package ru.netology.nmedia.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.DetailsFragment.Companion.idArgument
-import ru.netology.nmedia.activity.NewPostFragment.Companion.postArgument
-import ru.netology.nmedia.adapter.OnInteractionListener
-import ru.netology.nmedia.adapter.PostsAdapter
+import ru.netology.nmedia.view.activity.DetailsFragment.Companion.idArgument
+import ru.netology.nmedia.view.activity.NewPostFragment.Companion.postArgument
+import ru.netology.nmedia.view.adapter.OnInteractionListener
+import ru.netology.nmedia.view.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
-import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.model.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class FeedFragment : Fragment() {
