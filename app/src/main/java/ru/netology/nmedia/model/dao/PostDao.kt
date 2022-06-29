@@ -1,10 +1,7 @@
 package ru.netology.nmedia.model.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import ru.netology.nmedia.model.entity.PostEntity
 
 
@@ -13,7 +10,7 @@ interface PostDao {
     @Query("SELECT * FROM PostEntity ORDER BY id")
     fun getAll(): LiveData<List<PostEntity>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(post: PostEntity)
 
     @Query(
